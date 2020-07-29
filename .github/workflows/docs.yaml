@@ -3,7 +3,7 @@ name: Generate README.html
 on: [push, pull_request]
 
 jobs:
-  convert_via_pandoc:
+  doc_lint:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -11,6 +11,9 @@ jobs:
 
       - name: Link checker
         uses: gaurav-nelson/github-action-markdown-link-check@v1
+
+      - name: Content checker
+        uses: gaurav-nelson/github-action-vale-lint@0.1.0
 
       - uses: docker://pandoc/core:2.9
         with:
